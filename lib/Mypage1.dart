@@ -10,7 +10,7 @@ class Mypage1 extends StatefulWidget{
   _MypageState createState() => _MypageState();
 }
 
-class _MypageState extends State<Mypage1>{
+class _MypageState extends State<Mypage1> with AutomaticKeepAliveClientMixin{
   int _tabIndex = 0;
   var tabImages;
   var appBarTitles = ['首页', '发现', '我的'];
@@ -90,4 +90,8 @@ class _MypageState extends State<Mypage1>{
       
     );
   }
+
+  // TODO: implement wantKeepAlive
+  @override
+  bool get wantKeepAlive => true;
 }

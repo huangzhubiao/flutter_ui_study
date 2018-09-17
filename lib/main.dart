@@ -3,8 +3,9 @@ import 'dart:ui';
 import 'package:test_ui_proj/DemoPage.dart';
 import 'package:test_ui_proj/Mypage1.dart';
 import 'package:test_ui_proj/ForgetPassword.dart';
+import 'package:test_ui_proj/zhihu/index/index_page.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(new ZhiHuApp());
 // void main() {
 //   runApp(new DemoApp());
 // }
@@ -226,5 +227,16 @@ class DemoApp extends StatelessWidget{
         '/a':(BuildContext context) => Mypage1('147852'),
       },
       );
+  }
+}
+
+class ZhiHuApp extends StatelessWidget{
+  ZhiHuApp({Key key}):super(key:key);
+  @override
+  Widget build(BuildContext context){
+    return new MaterialApp(
+      title: "知乎-高仿版",
+      home: new Index(),
+    );
   }
 }
