@@ -236,7 +236,8 @@ class ZhiHuApp extends StatelessWidget{
   Widget build(BuildContext context){
     return new MaterialApp(
       title: "知乎-高仿版",
-      home: new Index(),
+      // home: new Index(),
+      home: new BossApp(),
     );
   }
 }

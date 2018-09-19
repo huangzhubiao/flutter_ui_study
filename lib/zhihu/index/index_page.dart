@@ -6,6 +6,7 @@ import 'package:test_ui_proj/zhihu/my/my_page.dart';
 import 'package:test_ui_proj/zhihu/notice/notice_page.dart';
 import 'package:test_ui_proj/zhihu/index/navigation_icon_view.dart';
 import 'package:test_ui_proj/zhihu/global_config.dart';
+import 'package:test_ui_proj/zhihu/index/icon_tab.dart';
 import 'package:flutter/foundation.dart';
 
 class Index extends StatefulWidget {
@@ -77,14 +78,11 @@ class _IndexState extends State<Index> with TickerProviderStateMixin{
     }
   }
 final ThemeData kIOSTheme = new ThemeData(
-  primarySwatch: Colors.orange,
-  primaryColor: Colors.red[300],
-  primaryColorBrightness: Brightness.light,
 );
 
 final ThemeData kDefaultTheme = new ThemeData(
-  primarySwatch: Colors.blue,
-  accentColor: Colors.orangeAccent[100],
+  // primarySwatch: Colors.black12,
+  // accentColor: Colors.orangeAccent[100],
 );
   @override
   Widget build(BuildContext context) {
@@ -112,9 +110,112 @@ final ThemeData kDefaultTheme = new ThemeData(
         ),
         bottomNavigationBar: bottomNavigationBar,
       ),
-      theme: kDefaultTheme
+      // theme: kIOSTheme
       
     );
   }
 
+}
+
+//===============boss====================class
+const double _kTabTextSize = 11.0;
+const int INDEX_HOME = 0;
+const int INDEX_IDEA = 1;
+const int INDEX_MARKET = 2;
+const int INDEX_NOTICE = 3;
+const int INDEX_MY = 4;
+Color _kPrimaryColor = new Color.fromARGB(255, 0, 215, 198);
+
+class BossApp extends StatefulWidget {
+  @override
+  HomeState createState() => new HomeState();
+}
+
+class HomeState extends State<BossApp> with SingleTickerProviderStateMixin {
+  int _currentIndex = 0;
+  TabController _controller;
+  VoidCallback onChanged;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+    new TabController(initialIndex: _currentIndex, length: 5, vsync: this);
+    onChanged = () {
+      setState(() {
+        _currentIndex = this._controller.index;
+      });
+    };
+
+    _controller.addListener(onChanged);
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(onChanged);
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new Scaffold(
+      body: new TabBarView(
+        children: <Widget>[
+          new ZHomePage(),
+          new IdeaPage(),
+          new MarketPage(),
+          new NoticePage(),
+          new MyPage()],
+        controller: _controller,
+      ),
+      bottomNavigationBar: new Material(
+        color: Colors.white,
+        child: new TabBar(
+          controller: _controller,
+          // indicatorSize: TabBarIndicatorSize.label,
+          indicatorWeight: 0.1,
+          labelStyle: new TextStyle(fontSize: _kTabTextSize),
+          tabs: <IconTab>[
+            new IconTab(
+              icon: _currentIndex == INDEX_HOME
+                ? "images/ic_main_tab_company_pre.png"
+                : "images/ic_main_tab_company_nor.png",
+              text: "首页",
+              color: _currentIndex == INDEX_HOME ? _kPrimaryColor : Colors.grey[900]
+            ),
+            new IconTab(
+              icon: _currentIndex == INDEX_IDEA
+                ? "images/ic_main_tab_contacts_pre.png"
+                : "images/ic_main_tab_contacts_nor.png",
+              text: "消息",
+              color: _currentIndex == INDEX_IDEA ? _kPrimaryColor : Colors.grey[900]
+            ),
+            new IconTab(
+              icon: _currentIndex == INDEX_MARKET
+                ? "images/ic_main_tab_find_pre.png"
+                : "images/ic_main_tab_find_nor.png",
+              text: "市场",
+              color: _currentIndex == INDEX_MARKET ? _kPrimaryColor : Colors.grey[900]
+            ),
+            new IconTab(
+              icon: _currentIndex == INDEX_NOTICE
+                ? "images/ic_main_tab_my_pre.png"
+                : "images/ic_main_tab_my_nor.png",
+              text: " 通知",
+              color: (_currentIndex == INDEX_NOTICE) ? _kPrimaryColor : Colors.grey[900]
+            ),
+            new IconTab(
+              icon: _currentIndex == INDEX_MY
+                ? "images/ic_main_tab_my_pre.png"
+                : "images/ic_main_tab_my_nor.png",
+              text: "我的",
+              color: (_currentIndex == INDEX_MY) ? _kPrimaryColor : Colors.grey[900]
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

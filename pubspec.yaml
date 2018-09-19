@@ -20,6 +20,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   shared_preferences: ^0.4.2
+  flutter_statusbar: ^0.0.1
 
 dev_dependencies:
   flutter_test:
@@ -43,11 +44,22 @@ flutter:
    - images/ic_launcher.png
    - images/icon_username.png
    - images/icon_password.png
-   - images/QQ20180712-1.png
+   - images/shentan.png
    - images/home_selected.png
    - images/home.png
    - images/my_header.png
    - images/haha.png
+   - images/1.png
+   - images/实名认证1@2x.png
+   - images/实名认证2@2x.png
+   - images/ic_main_tab_company_pre.png
+   - images/ic_main_tab_company_nor.png
+   - images/ic_main_tab_contacts_pre.png
+   - images/ic_main_tab_contacts_nor.png
+   - images/ic_main_tab_find_pre.png
+   - images/ic_main_tab_find_nor.png
+   - images/ic_main_tab_my_pre.png
+   - images/ic_main_tab_my_nor.png
 
   #  - images/a_dot_ham.jpeg
 
